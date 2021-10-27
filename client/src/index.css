@@ -1,3 +1,47 @@
 body {
   font-family: "Roboto", sans-serif;
 }
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.container-inner {
+  min-width: 650px;
+  width: 1200px;
+}
+
+.header__heading {
+  text-align: center;
+  font-weight: 300;
+  font-size: 40px;
+}
+
+.add-restaurant-form {
+  display: flex;
+
+  margin-bottom: 30px;
+}
+
+.add-restaurant-form__name,
+.add-restaurant-form__location,
+.add-restaurant-form__price-range {
+  margin-right: 10px !important;
+}
+
+.add-restaurant-form__name {
+  flex-basis: 36%;
+}
+
+.add-restaurant-form__location {
+  flex-basis: 36%;
+}
+
+.add-restaurant-form__price-range {
+  flex-basis: 21%;
+}
+
+.add-restaurant-form__button {
+  flex-basis: 7%;
+}
