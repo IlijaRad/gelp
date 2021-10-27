@@ -1,0 +1,14 @@
+const { Pool } = require("pg");
+
+const { PGUSER, PGHOST, PGDATABASE, PGPORT } = process.env;
+
+const pool = new Pool({
+  // user: PGUSER,
+  // host: PGHOST,
+  // database: PGDATABASE,
+  // port: PGPORT,
+});
+
+module.exports = {
+  query: (text, params) => pool.query(text, params),
+};
