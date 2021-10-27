@@ -14,6 +14,7 @@ import { RestaurantContext } from "../context/RestaurantsContext";
 
 const RestaurantList = () => {
   const { restaurants, setRestaurants } = useContext(RestaurantContext);
+
   useEffect(() => {
     async function getRestaurants() {
       try {
@@ -27,6 +28,24 @@ const RestaurantList = () => {
     getRestaurants();
     //eslint-disable-next-line
   }, []);
+
+  const handleDelete = async (id) => {
+    try {
+      await fetch(`${API_PATH}/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      setRestaurants(
+        restaurants.filter((restaurant) => {
+          return restaurant.id !== id;
+        })
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <TableContainer component={Paper}>
@@ -43,18 +62,16 @@ const RestaurantList = () => {
         </TableHead>
         <TableBody>
           {restaurants &&
-            restaurants.map((restaurant) => (
+            restaurants.map(({ id, name, location, price_range }) => (
               <TableRow
-                key={restaurant.id}
+                key={id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  {restaurant.name}
+                  {name}
                 </TableCell>
-                <TableCell align="center">{restaurant.location}</TableCell>
-                <TableCell align="center">
-                  {"$".repeat(restaurant.price_range)}
-                </TableCell>
+                <TableCell align="center">{location}</TableCell>
+                <TableCell align="center">{"$".repeat(price_range)}</TableCell>
                 <TableCell align="center">Reviews</TableCell>
                 <TableCell align="center">
                   <Button variant="contained" color="success">
@@ -62,7 +79,11 @@ const RestaurantList = () => {
                   </Button>
                 </TableCell>
                 <TableCell align="center">
-                  <Button variant="contained" color="error">
+                  <Button
+                    onClick={() => handleDelete(id)}
+                    variant="contained"
+                    color="error"
+                  >
                     Delete
                   </Button>
                 </TableCell>
