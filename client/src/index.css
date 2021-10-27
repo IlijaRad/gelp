@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: "Roboto", sans-serif;
 }
@@ -48,4 +52,56 @@ body {
 
 .field-container {
   margin-bottom: 25px;
+}
+
+.table-row {
+  cursor: pointer;
+}
+
+.table-row:hover {
+  background-color: hsl(0, 0%, 90%);
+}
+
+.card {
+  flex-basis: 22%;
+  margin-right: 3%;
+  margin-bottom: 30px;
+}
+
+.card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #f4f4f4;
+}
+
+.card__rating {
+  margin-right: 10px;
+}
+
+.container-reviews {
+  min-width: 650px;
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.restaurant-reviews {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ratings-cell {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.ratings-cell > span {
+  margin-right: 5px;
+}
+
+.centered {
+  align-self: center !important;
+  margin-bottom: 30px;
 }

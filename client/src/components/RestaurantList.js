@@ -7,14 +7,16 @@ import {
   TableRow,
   Paper,
   Button,
+  Rating,
 } from "@mui/material";
 import { useContext, useEffect } from "react";
 import { API_PATH } from "../contants/api";
-import { Link } from "react-router-dom";
 import { RestaurantsContext } from "../context/RestaurantsContext";
+import { useHistory } from "react-router-dom";
 
 const RestaurantList = () => {
   const { restaurants, setRestaurants } = useContext(RestaurantsContext);
+  const history = useHistory();
 
   useEffect(() => {
     async function getRestaurants() {
@@ -30,7 +32,14 @@ const RestaurantList = () => {
     //eslint-disable-next-line
   }, []);
 
-  const handleDelete = async (id) => {
+  const handleEdit = (e, id) => {
+    e.stopPropagation();
+    history.push(`/restaurants/${id}/update`);
+  };
+
+  const handleDelete = async (e, id) => {
+    e.stopPropagation();
+
     try {
       await fetch(`${API_PATH}/${id}`, {
         method: "DELETE",
@@ -48,6 +57,10 @@ const RestaurantList = () => {
     }
   };
 
+  const handleClick = (e, id) => {
+    history.push(`/restaurants/${id}`);
+  };
+
   return (
     <TableContainer component={Paper}>
       <Table>
@@ -63,35 +76,55 @@ const RestaurantList = () => {
         </TableHead>
         <TableBody>
           {restaurants &&
-            restaurants.map(({ id, name, location, price_range }) => (
-              <TableRow
-                key={id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {name}
-                </TableCell>
-                <TableCell align="center">{location}</TableCell>
-                <TableCell align="center">{"$".repeat(price_range)}</TableCell>
-                <TableCell align="center">Reviews</TableCell>
-                <TableCell align="center">
-                  <Link to={`/restaurants/${id}/update`}>
-                    <Button variant="contained" color="success">
+            restaurants.map(
+              ({ id, name, location, price_range, average_rating, count }) => (
+                <TableRow
+                  key={id}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  onClick={(event) => handleClick(event, id)}
+                  className="table-row"
+                >
+                  <TableCell component="th" scope="row">
+                    {name}
+                  </TableCell>
+                  <TableCell align="center">{location}</TableCell>
+                  <TableCell align="center">
+                    {"$".repeat(price_range)}
+                  </TableCell>
+                  <TableCell align="center" className="ratings-cell">
+                    {average_rating ? (
+                      <>
+                        <Rating value={Math.round(average_rating)} readOnly />
+                        {`(${count})`}
+                      </>
+                    ) : (
+                      <>
+                        <Rating value={0} readOnly />
+                        {`(0)`}
+                      </>
+                    )}
+                  </TableCell>
+                  <TableCell align="center">
+                    <Button
+                      variant="contained"
+                      color="success"
+                      onClick={(event) => handleEdit(event, id)}
+                    >
                       Edit
                     </Button>
-                  </Link>
-                </TableCell>
-                <TableCell align="center">
-                  <Button
-                    onClick={() => handleDelete(id)}
-                    variant="contained"
-                    color="error"
-                  >
-                    Delete
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
+                  </TableCell>
+                  <TableCell align="center">
+                    <Button
+                      onClick={(event) => handleDelete(event, id)}
+                      variant="contained"
+                      color="error"
+                    >
+                      Delete
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              )
+            )}
         </TableBody>
       </Table>
     </TableContainer>

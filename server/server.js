@@ -12,7 +12,9 @@ app.use(express.json());
 
 app.get("/api/v1/restaurants", async (req, res) => {
   try {
-    const result = await db.query("SELECT * from restaurants");
+    const result = await db.query(
+      "SELECT * from restaurants LEFT JOIN (SELECT restaurant_id, COUNT(*), TRUNC(AVG(rating), 1) as average_rating from reviews group by restaurant_id) reviews on restaurants.id = reviews.restaurant_id"
+    );
     res.status(200).json({
       status: "success",
       results: result.rows.length,
@@ -30,13 +32,21 @@ app.get("/api/v1/restaurants", async (req, res) => {
 
 app.get("/api/v1/restaurants/:id", async (req, res) => {
   try {
-    const result = await db.query("SELECT * from restaurants where id = $1", [
-      req.params.id,
-    ]);
+    const restaurant = await db.query(
+      "SELECT * from restaurants LEFT JOIN (SELECT restaurant_id, COUNT(*), TRUNC(AVG(rating), 1) as average_rating from reviews group by restaurant_id) reviews on restaurants.id = reviews.restaurant_id where id = $1",
+      [req.params.id]
+    );
+
+    const reviews = await db.query(
+      "SELECT * from reviews where restaurant_id = $1",
+      [req.params.id]
+    );
+      
     res.status(200).json({
       status: "success",
       data: {
-        restaurant: result.rows[0],
+        restaurant: restaurant.rows[0],
+        reviews: reviews.rows,
       },
     });
   } catch (error) {
@@ -91,6 +101,25 @@ app.delete("/api/v1/restaurants/:id", async (req, res) => {
     await db.query("DELETE FROM restaurants where id = $1", [req.params.id]);
     res.status(204).json({
       status: "success",
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.post("/api/v1/restaurants/:id/addReview", async (req, res) => {
+  const { name, review, rating } = req.body;
+
+  try {
+    const newReview = await db.query(
+      "INSERT INTO reviews (restaurant_id, name, review, rating) values ($1, $2, $3, $4) returning *;",
+      [req.params.id, name, review, rating]
+    );
+    res.status(201).json({
+      status: "success",
+      data: {
+        review: newReview.rows[0],
+      },
     });
   } catch (error) {
     console.log(error);
