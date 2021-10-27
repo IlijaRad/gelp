@@ -1,12 +1,12 @@
 import ReactDOM from "react-dom";
 import App from "./App";
-import { RestaurantContextProvider } from "./context/RestaurantsContext";
+import { RestaurantsContextProvider } from "./context/RestaurantsContext";
 import "./index.css";
 
 ReactDOM.render(
-  <RestaurantContextProvider>
+  <RestaurantsContextProvider>
     <App />
-  </RestaurantContextProvider>,
+  </RestaurantsContextProvider>,
   document.getElementById("root")
 );
 

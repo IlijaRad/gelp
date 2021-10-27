@@ -1,4 +1,4 @@
 const Header = () => {
-  return <h1 className="header__heading">Restaurant finder</h1>;
+  return <h1 className="page__title">Restaurant finder</h1>;
 };
 export default Header;

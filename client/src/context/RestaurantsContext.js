@@ -1,8 +1,8 @@
 import { createContext, useState } from "react";
 
-export const RestaurantContext = createContext();
+export const RestaurantsContext = createContext();
 
-export const RestaurantContextProvider = (props) => {
+export const RestaurantsContextProvider = (props) => {
   const [restaurants, setRestaurants] = useState([]);
 
   const addRestaurant = (restaurant) => {
@@ -10,10 +10,10 @@ export const RestaurantContextProvider = (props) => {
   };
 
   return (
-    <RestaurantContext.Provider
+    <RestaurantsContext.Provider
       value={{ restaurants, setRestaurants, addRestaurant }}
     >
       {props.children}
-    </RestaurantContext.Provider>
+    </RestaurantsContext.Provider>
   );
 };

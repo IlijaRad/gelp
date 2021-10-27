@@ -1,11 +1,11 @@
 import { TextField, MenuItem, Button } from "@mui/material";
 import { useState } from "react";
 import { useContext } from "react";
-import { RestaurantContext } from "../context/RestaurantsContext";
+import { RestaurantsContext } from "../context/RestaurantsContext";
 import { API_PATH } from "../contants/api";
 
 const AddRestaurant = () => {
-  const { addRestaurant } = useContext(RestaurantContext);
+  const { addRestaurant } = useContext(RestaurantsContext);
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [selectedPriceRange, setSelectedPrinceRange] = useState(1);

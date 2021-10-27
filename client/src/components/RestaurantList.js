@@ -10,10 +10,11 @@ import {
 } from "@mui/material";
 import { useContext, useEffect } from "react";
 import { API_PATH } from "../contants/api";
-import { RestaurantContext } from "../context/RestaurantsContext";
+import { Link } from "react-router-dom";
+import { RestaurantsContext } from "../context/RestaurantsContext";
 
 const RestaurantList = () => {
-  const { restaurants, setRestaurants } = useContext(RestaurantContext);
+  const { restaurants, setRestaurants } = useContext(RestaurantsContext);
 
   useEffect(() => {
     async function getRestaurants() {
@@ -49,7 +50,7 @@ const RestaurantList = () => {
 
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }}>
+      <Table>
         <TableHead>
           <TableRow>
             <TableCell>Restaurant</TableCell>
@@ -74,9 +75,11 @@ const RestaurantList = () => {
                 <TableCell align="center">{"$".repeat(price_range)}</TableCell>
                 <TableCell align="center">Reviews</TableCell>
                 <TableCell align="center">
-                  <Button variant="contained" color="success">
-                    Edit
-                  </Button>
+                  <Link to={`/restaurants/${id}/update`}>
+                    <Button variant="contained" color="success">
+                      Edit
+                    </Button>
+                  </Link>
                 </TableCell>
                 <TableCell align="center">
                   <Button
