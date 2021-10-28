@@ -6,8 +6,10 @@ const Home = () => (
   <div className="container">
     <div className="container-inner">
       <Header />
-      <AddRestaurant />
-      <RestaurantList />
+      <div className="responsive-container">
+        <AddRestaurant />
+        <RestaurantList />
+      </div>
     </div>
   </div>
 );

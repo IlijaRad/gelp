@@ -66,7 +66,7 @@ const RestaurantList = () => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>Restaurant</TableCell>
+            <TableCell align="center">Restaurant</TableCell>
             <TableCell align="center">Location</TableCell>
             <TableCell align="center">Price Range</TableCell>
             <TableCell align="center">Ratings</TableCell>
@@ -84,7 +84,7 @@ const RestaurantList = () => {
                   onClick={(event) => handleClick(event, id)}
                   className="table-row"
                 >
-                  <TableCell component="th" scope="row">
+                  <TableCell align="center" component="th" scope="row">
                     {name}
                   </TableCell>
                   <TableCell align="center">{location}</TableCell>
@@ -109,6 +109,7 @@ const RestaurantList = () => {
                       variant="contained"
                       color="success"
                       onClick={(event) => handleEdit(event, id)}
+                      className="table-button"
                     >
                       Edit
                     </Button>
@@ -118,6 +119,7 @@ const RestaurantList = () => {
                       onClick={(event) => handleDelete(event, id)}
                       variant="contained"
                       color="error"
+                      className="table-button"
                     >
                       Delete
                     </Button>

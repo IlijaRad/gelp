@@ -83,7 +83,7 @@ const AddReview = () => {
             onChange={(e) => setReviewText(e.target.value)}
           />
         </div>
-        <div>
+        <div className="field-container">
           <Button type="submit" variant="contained">
             Submit
           </Button>

@@ -33,54 +33,52 @@ const AddRestaurant = () => {
   };
 
   return (
-    <div>
-      <form action="" className="add-restaurant-form" onSubmit={handleSubmit}>
-        <TextField
-          className="add-restaurant-form__name"
-          size="small"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <TextField
-          className="add-restaurant-form__location"
-          size="small"
-          placeholder="Location"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-        />
-        <TextField
-          className="add-restaurant-form__price-range"
-          select
-          fullWidth
-          size="small"
-          label="Price Range"
-          value={selectedPriceRange}
-          onChange={(e) => setSelectedPrinceRange(e.target.value)}
-          variant="outlined"
-          SelectProps={{
-            onClose: () => {
-              setTimeout(() => {
-                document.activeElement.blur();
-              }, 0);
-            },
-          }}
-        >
-          {[1, 2, 3, 4, 5].map((option) => (
-            <MenuItem value={option} key={option}>
-              {"$".repeat(option)}
-            </MenuItem>
-          ))}
-        </TextField>
-        <Button
-          type="submit"
-          className="add-restaurant-form__button"
-          variant="contained"
-        >
-          Add
-        </Button>
-      </form>
-    </div>
+    <form action="" className="add-restaurant-form" onSubmit={handleSubmit}>
+      <TextField
+        className="add-restaurant-form__name"
+        size="small"
+        placeholder="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <TextField
+        className="add-restaurant-form__location"
+        size="small"
+        placeholder="Location"
+        value={location}
+        onChange={(e) => setLocation(e.target.value)}
+      />
+      <TextField
+        className="add-restaurant-form__price-range"
+        select
+        fullWidth
+        size="small"
+        label="Price Range"
+        value={selectedPriceRange}
+        onChange={(e) => setSelectedPrinceRange(e.target.value)}
+        variant="outlined"
+        SelectProps={{
+          onClose: () => {
+            setTimeout(() => {
+              document.activeElement.blur();
+            }, 0);
+          },
+        }}
+      >
+        {[1, 2, 3, 4, 5].map((option) => (
+          <MenuItem value={option} key={option}>
+            {"$".repeat(option)}
+          </MenuItem>
+        ))}
+      </TextField>
+      <Button
+        type="submit"
+        className="add-restaurant-form__button"
+        variant="contained"
+      >
+        Add
+      </Button>
+    </form>
   );
 };
 export default AddRestaurant;
