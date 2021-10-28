@@ -194,9 +194,13 @@ body {
     border: 1px solid #ccc;
   }
 
+  th {
+    border-bottom: 1px solid #eee !important;
+  }
+
   td {
     border: none;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #eee !important;
     position: relative;
     padding-left: 50%;
     height: 50px;

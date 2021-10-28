@@ -1,1 +1,2 @@
-export const API_PATH = "http://localhost:3001/api/v1/restaurants";
+export const API_PATH =
+  "https://restaurant-finder5.herokuapp.com/api/v1/restaurants";
