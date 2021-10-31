@@ -22,8 +22,17 @@ body {
 }
 
 .add-restaurant-form {
-  display: flex;
   margin-bottom: 30px;
+}
+
+.add-restaurant-form__errors {
+  margin-bottom: 5px;
+  display: flex;
+  color: red;
+}
+
+.add-restaurant-form__fields {
+  display: flex;
   flex-shrink: 1;
 }
 
@@ -33,10 +42,8 @@ body {
   margin-right: 10px !important;
 }
 
-.add-restaurant-form__name {
-  flex-basis: 36%;
-}
-
+.add-restaurant-form__errors > div,
+.add-restaurant-form__name,
 .add-restaurant-form__location {
   flex-basis: 36%;
 }
