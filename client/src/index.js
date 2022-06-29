@@ -1,13 +1,14 @@
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import App from "./App";
 import { RestaurantsContextProvider } from "./context/RestaurantsContext";
 import "./index.css";
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(
   <RestaurantsContextProvider>
     <App />
-  </RestaurantsContextProvider>,
-  document.getElementById("root")
+  </RestaurantsContextProvider>
 );
 
 //add roboto font
