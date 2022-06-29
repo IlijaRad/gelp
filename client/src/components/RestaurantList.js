@@ -12,11 +12,11 @@ import {
 import { useContext, useEffect } from "react";
 import { API_PATH } from "../contants/api";
 import { RestaurantsContext } from "../context/RestaurantsContext";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const RestaurantList = () => {
   const { restaurants, setRestaurants } = useContext(RestaurantsContext);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getRestaurants() {
@@ -34,7 +34,7 @@ const RestaurantList = () => {
 
   const handleEdit = (e, id) => {
     e.stopPropagation();
-    history.push(`/restaurants/${id}/update`);
+    navigate(`/restaurants/${id}/update`);
   };
 
   const handleDelete = async (e, id) => {
@@ -57,8 +57,8 @@ const RestaurantList = () => {
     }
   };
 
-  const handleClick = (e, id) => {
-    history.push(`/restaurants/${id}`);
+  const handleClick = (id) => {
+    navigate(`/restaurants/${id}`);
   };
 
   return (
@@ -81,7 +81,7 @@ const RestaurantList = () => {
                 <TableRow
                   key={id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  onClick={(event) => handleClick(event, id)}
+                  onClick={() => handleClick(id)}
                   className="table-row"
                 >
                   <TableCell align="center" component="th" scope="row">

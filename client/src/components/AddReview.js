@@ -1,21 +1,23 @@
 import { TextField, MenuItem, Button } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { API_PATH } from "../contants/api";
-import { useParams, useLocation, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { RestaurantsContext } from "../context/RestaurantsContext";
 
 const AddReview = () => {
   const { id } = useParams();
-  const location = useLocation();
-  const history = useHistory();
   const [name, setName] = useState("");
   const [reviewText, setReviewText] = useState("");
   const [rating, setRating] = useState(1);
+
+  const { selectedRestaurant, setSelectedRestaurant } =
+    useContext(RestaurantsContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      await fetch(`${API_PATH}/${id}/addReview`, {
+      const res = await fetch(`${API_PATH}/${id}/addReview`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -26,8 +28,13 @@ const AddReview = () => {
           rating,
         }),
       });
-      history.push("/");
-      history.push(location.pathname);
+      if (res.ok) {
+        const { data } = await res.json();
+        setSelectedRestaurant({
+          ...selectedRestaurant,
+          reviews: [...selectedRestaurant.reviews, data.review],
+        });
+      }
     } catch (err) {
       console.log(err);
     }

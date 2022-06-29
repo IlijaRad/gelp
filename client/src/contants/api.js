@@ -1,2 +1,4 @@
 export const API_PATH =
-  "https://restaurant-finder5.herokuapp.com/api/v1/restaurants";
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3001/api/v1/restaurants"
+    : process.env.REACT_APP_API_URL;

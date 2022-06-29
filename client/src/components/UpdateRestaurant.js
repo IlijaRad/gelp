@@ -4,11 +4,11 @@ import { useState, useContext } from "react";
 import { RestaurantsContext } from "../context/RestaurantsContext";
 import { useEffect } from "react";
 import { API_PATH } from "../contants/api";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const UpdateRestaurant = () => {
   const { id } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate();
   const { restaurants, setRestaurants } = useContext(RestaurantsContext);
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
@@ -35,7 +35,7 @@ const UpdateRestaurant = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     async function updateRestaurants() {
-      await fetch(`${API_PATH}/${id}`, {
+      const res = await fetch(`${API_PATH}/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -46,8 +46,10 @@ const UpdateRestaurant = () => {
           price_range: selectedPriceRange,
         }),
       });
+      if (res.ok) {
+        navigate("/");
+      }
     }
-    history.push("/");
     updateRestaurants();
   };
 
@@ -60,7 +62,6 @@ const UpdateRestaurant = () => {
           <div className="field-container">
             <TextField
               fullWidth
-              className=""
               size="small"
               placeholder="Name"
               value={name}
@@ -70,7 +71,6 @@ const UpdateRestaurant = () => {
           <div className="field-container">
             <TextField
               fullWidth
-              className=""
               size="small"
               placeholder="Location"
               value={location}
@@ -79,7 +79,6 @@ const UpdateRestaurant = () => {
           </div>
           <div className="field-container">
             <TextField
-              className=""
               select
               fullWidth
               size="small"
