@@ -1,16 +1,14 @@
-import { useEffect } from "react";
-import { useContext } from "react";
+import { useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { RestaurantsContext } from "../context/RestaurantsContext";
 import { API_PATH } from "../contants/api";
 import Reviews from "../components/Reviews";
-import AddReview from "../components/AddReview";
-import { Rating } from "@mui/material";
 
 const Restaurant = () => {
   const { id } = useParams();
   const { selectedRestaurant, setSelectedRestaurant } =
     useContext(RestaurantsContext);
+
   useEffect(() => {
     async function getRestaurant() {
       try {
@@ -26,23 +24,35 @@ const Restaurant = () => {
   }, []);
 
   return (
-    <div className="container">
-      <div className="container-reviews">
-        {selectedRestaurant && (
-          <>
-            <h1 className="page-title">{selectedRestaurant.restaurant.name}</h1>
-            <Rating
-              value={Math.round(selectedRestaurant.restaurant.average_rating)}
-              readOnly
-              className="centered"
-            />
-            <div className="restaurant-reviews">
-              <Reviews reviews={selectedRestaurant.reviews} />
-            </div>
-          </>
-        )}
-        <AddReview />
-      </div>
+    <div className="my-8">
+      {selectedRestaurant && (
+        <div className="flex flex-col items-center">
+          <h1 className="text-center font-medium text-gray-800 text-[42px]">
+            {selectedRestaurant.restaurant.name}
+          </h1>
+          <div className="flex mb-8">
+            {[
+              ...Array(
+                Math.round(selectedRestaurant.restaurant.average_rating)
+              ),
+            ].map((_, i) => (
+              <span className="text-yellow-500 text-2xl" key={i}>
+                ★
+              </span>
+            ))}
+            {[
+              ...Array(
+                5 - Math.round(selectedRestaurant.restaurant.average_rating)
+              ),
+            ].map((_, i) => (
+              <span className="text-gray-500 text-2xl" key={i}>
+                ★
+              </span>
+            ))}
+          </div>
+          <Reviews reviews={selectedRestaurant.reviews} />
+        </div>
+      )}
     </div>
   );
 };
