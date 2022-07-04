@@ -1,8 +1,7 @@
-import { TextField, MenuItem, Button } from "@mui/material";
-import { useState } from "react";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { RestaurantsContext } from "../context/RestaurantsContext";
 import { API_PATH } from "../contants/api";
+import { useNavigate } from "react-router-dom";
 
 const AddRestaurant = () => {
   const { addRestaurant } = useContext(RestaurantsContext);
@@ -10,6 +9,7 @@ const AddRestaurant = () => {
   const [location, setLocation] = useState("");
   const [selectedPriceRange, setSelectedPrinceRange] = useState(1);
   const [attemptedSubmit, setAttemptedSubmit] = useState(false);
+  const navigate = useNavigate();
 
   const getErrors = () => {
     const result = {};
@@ -26,7 +26,7 @@ const AddRestaurant = () => {
     setAttemptedSubmit(true);
     if (!isValid) return;
     try {
-      const result = await fetch(API_PATH, {
+      const response = await fetch(API_PATH, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -37,72 +37,86 @@ const AddRestaurant = () => {
           price_range: selectedPriceRange,
         }),
       });
-      const json = await result.json();
-      addRestaurant(json.data.restaurant);
-      setName("");
-      setLocation("");
-      setAttemptedSubmit(false);
+      if (response.ok) {
+        setName("");
+        setLocation("");
+        setAttemptedSubmit(false);
+        const json = await response.json();
+        addRestaurant(json.data.restaurant);
+        navigate("/");
+      }
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-    <form action="" className="add-restaurant-form" onSubmit={handleSubmit}>
-      <div className="add-restaurant-form__errors">
-        {attemptedSubmit && !isValid && errors.name && <div>{errors.name}</div>}
-        {attemptedSubmit && !isValid && errors.location && (
-          <div>{errors.location}</div>
-        )}
-      </div>
+    <div className="my-8">
+      <h1 className="text-center font-medium text-gray-800 text-[42px] mb-8">
+        Add Restaurant
+      </h1>
+      <div className="max-w-3xl w-full mx-auto mt-12 px-6">
+        <form className="w-full" onSubmit={handleSubmit}>
+          <div className="">
+            {attemptedSubmit && !isValid && errors.name && (
+              <div>{errors.name}</div>
+            )}
+            {attemptedSubmit && !isValid && errors.location && (
+              <div>{errors.location}</div>
+            )}
+          </div>
+          <label htmlFor="name" className="text-sm mb-1 block text-gray-900">
+            Name
+          </label>
+          <input
+            type="text"
+            id="name"
+            className="mb-4 py-2 block w-full px-3 border border-gray-300 text-gray-900 rounded"
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            maxLength={50}
+          />
+          <label
+            htmlFor="location"
+            className="text-sm mb-1 block text-gray-900"
+          >
+            Location
+          </label>
+          <input
+            type="text"
+            id="location"
+            className="mb-4 py-2 block w-full px-3 border border-gray-300 text-gray-900 rounded"
+            placeholder="Location"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            maxLength={50}
+          />
+          <label className="text-sm mb-1 block text-gray-900">
+            Price Range
+          </label>
 
-      <div className="add-restaurant-form__fields">
-        <TextField
-          className="add-restaurant-form__name"
-          size="small"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <TextField
-          className="add-restaurant-form__location"
-          size="small"
-          placeholder="Location"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-        />
-        <TextField
-          className="add-restaurant-form__price-range"
-          select
-          fullWidth
-          size="small"
-          label="Price Range"
-          value={selectedPriceRange}
-          onChange={(e) => setSelectedPrinceRange(e.target.value)}
-          variant="outlined"
-          SelectProps={{
-            onClose: () => {
-              setTimeout(() => {
-                document.activeElement.blur();
-              }, 0);
-            },
-          }}
-        >
-          {[1, 2, 3, 4, 5].map((option) => (
-            <MenuItem value={option} key={option}>
-              {"$".repeat(option)}
-            </MenuItem>
-          ))}
-        </TextField>
-        <Button
-          type="submit"
-          className="add-restaurant-form__button"
-          variant="contained"
-        >
-          Add
-        </Button>
+          <select
+            className="mb-4 py-2 block w-full px-3 border border-gray-300 text-gray-900 rounded"
+            value={selectedPriceRange}
+            onChange={(e) => setSelectedPrinceRange(e.target.value)}
+          >
+            {[1, 2, 3, 4, 5].map((option) => (
+              <option value={option} key={option}>
+                {"$".repeat(option)}
+              </option>
+            ))}
+          </select>
+          <button
+            type="submit"
+            className="text-white font-medium px-9 py-[9px] bg-teal-600 hover:bg-teal-700 rounded"
+          >
+            Add
+          </button>
+        </form>
       </div>
-    </form>
+    </div>
   );
 };
+
 export default AddRestaurant;

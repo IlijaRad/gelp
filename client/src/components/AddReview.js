@@ -1,4 +1,3 @@
-import { TextField, MenuItem, Button } from "@mui/material";
 import { useContext, useState } from "react";
 import { API_PATH } from "../contants/api";
 import { useParams } from "react-router-dom";
@@ -41,62 +40,51 @@ const AddReview = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div className="field-container">
-          <TextField
-            className="add-restaurant-form__location"
-            fullWidth
-            size="small"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-        <div className="field-container">
-          <TextField
-            className="add-restaurant-form__price-range"
-            select
-            fullWidth
-            size="small"
-            label="Rating"
-            value={rating}
-            onChange={(e) => setRating(e.target.value)}
-            variant="outlined"
-            SelectProps={{
-              onClose: () => {
-                setTimeout(() => {
-                  document.activeElement.blur();
-                }, 0);
-              },
-            }}
-          >
-            {[1, 2, 3, 4, 5].map((option) => (
-              <MenuItem value={option} key={option}>
-                {option}
-              </MenuItem>
-            ))}
-          </TextField>
-        </div>
-        <div className="field-container">
-          <TextField
-            fullWidth
-            multiline
-            rows={4}
-            className="add-restaurant-form__location"
-            size="small"
-            placeholder="Write your review"
-            value={reviewText}
-            onChange={(e) => setReviewText(e.target.value)}
-          />
-        </div>
-        <div className="field-container">
-          <Button type="submit" variant="contained">
-            Submit
-          </Button>
-        </div>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit} className="mb-16">
+      <label htmlFor="name" className="text-sm mb-1 block text-gray-900">
+        Name
+      </label>
+      <input
+        id="name"
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        className="mb-4 py-2 block max-w-md w-full px-3 border border-gray-300 text-gray-900 rounded"
+        maxLength={50}
+      />
+      <label htmlFor="rating" className="text-sm mb-1 block text-gray-900">
+        Rating
+      </label>
+      <select
+        className="mb-4 py-2 block max-w-md w-full px-3 border border-gray-300 text-gray-900 rounded"
+        value={rating}
+        onChange={(e) => setRating(e.target.value)}
+      >
+        {[1, 2, 3, 4, 5].map((option) => (
+          <option value={option} key={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+      <label htmlFor="review" className="text-sm mb-1 block text-gray-900">
+        Name
+      </label>
+      <textarea
+        id="review"
+        rows={4}
+        placeholder="Write your review"
+        value={reviewText}
+        onChange={(e) => setReviewText(e.target.value)}
+        className="mb-4 py-2 block w-full px-3 border border-gray-300 text-gray-900 rounded min-h-[60px] max-h-[300px]"
+        maxLength={1000}
+      />
+      <button
+        type="submit"
+        className="text-white font-medium px-9 py-[9px] bg-blue-600 hover:bg-blue-700 rounded"
+      >
+        Add Review
+      </button>
+    </form>
   );
 };
 export default AddReview;
