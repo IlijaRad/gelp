@@ -1,5 +1,6 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_PATH } from "../contants/api";
+import Checkbox from "./Checkbox";
 
 const RestaurantsTableRow = ({
   id,
@@ -7,13 +8,49 @@ const RestaurantsTableRow = ({
   location,
   price_range,
   average_rating,
-  restaurants,
-  setRestaurants,
-  allRestaurants,
-  setAllRestaurants,
   count,
+  allChecked,
+  setAllChecked,
+  handleDelete,
+  selectedIds,
+  setSelectedIds,
 }) => {
   const navigate = useNavigate();
+  const [checked, setChecked] = useState(false);
+
+  useEffect(() => {
+    setChecked(selectedIds.includes(id));
+    if (allChecked) {
+      const notIncludes = !selectedIds.includes(id);
+      if (notIncludes) {
+        setSelectedIds((prev) => [...prev, id]);
+      }
+    }
+    //eslint-disable-next-line
+  }, [allChecked]);
+
+  useEffect(() => {
+    if (selectedIds.includes(id)) setChecked(true);
+    //eslint-disable-next-line
+  }, [selectedIds]);
+
+  useEffect(() => {
+    if (!allChecked) {
+      if (checked) {
+        const notIncludes = !selectedIds.includes(id);
+        if (notIncludes) {
+          setSelectedIds([...selectedIds, id]);
+        }
+      } else {
+        setSelectedIds(selectedIds.filter((selectedId) => selectedId !== id));
+      }
+    }
+    if (!checked && allChecked) {
+      setSelectedIds((prev) => prev.filter((sId) => sId !== id));
+      setAllChecked(false);
+    }
+    //eslint-disable-next-line
+  }, [checked]);
 
   const handleClick = (id) => {
     navigate(`/restaurants/${id}`);
@@ -24,39 +61,19 @@ const RestaurantsTableRow = ({
     navigate(`/restaurants/${id}/update`);
   };
 
-  const handleDelete = async (e) => {
-    e.stopPropagation();
-
-    try {
-      const response = await fetch(`${API_PATH}/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      if (response.ok) {
-        setRestaurants(
-          restaurants.filter((restaurant) => {
-            return restaurant.id !== id;
-          })
-        );
-        setAllRestaurants(
-          allRestaurants.filter((restaurant) => {
-            return restaurant.id !== id;
-          })
-        );
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   return (
     <tr
       key={id}
       className="h-20 text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100"
       onClick={() => handleClick(id)}
     >
+      <td
+        className="cursor-pointer pl-4 relative"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <Checkbox checked={checked} setChecked={setChecked} />
+      </td>
+
       <td className="cursor-pointer pl-4">
         <p className="font-medium">{name}</p>
       </td>
@@ -104,7 +121,10 @@ const RestaurantsTableRow = ({
       </td>
       <td className="pl-6">
         <button
-          onClick={handleDelete}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleDelete(id);
+          }}
           className="text-white font-medium px-6 py-3 bg-red-600 hover:bg-red-700 focus:outline-none rounded"
         >
           Delete
