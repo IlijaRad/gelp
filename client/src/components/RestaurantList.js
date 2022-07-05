@@ -21,7 +21,7 @@ const RestaurantList = () => {
   }, []);
 
   return (
-    <div className="max-w-[1400px] mx-auto mt-12">
+    <div className="mx-auto mt-12 max-w-[1400px]">
       <RestaurantsTable />
     </div>
   );

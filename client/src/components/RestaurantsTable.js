@@ -97,20 +97,20 @@ const RestaurantsTable = () => {
 
   return (
     <div className="w-full sm:px-6">
-      <div className="px-4 md:px-8 py-4 md:py-7 bg-gray-100 rounded-tl-lg rounded-tr-lg">
-        <div className="flex flex-wrap items-center justify-between gap-4 md:my-0 my-2">
+      <div className="rounded-tl-lg rounded-tr-lg bg-gray-100 px-4 py-4 md:px-8 md:py-7">
+        <div className="my-2 flex flex-wrap items-center justify-between gap-4 md:my-0">
           <div className="basis-full md:basis-[45%]">
-            <div className="relative w-full md:w-auto grow shrink">
+            <div className="relative w-full shrink grow md:w-auto">
               <input
                 type="text"
                 value={restaurantSearch}
                 onChange={(e) => setRestaurantSearch(e.target.value)}
-                className="rounded min-w-[300px] h-full w-full py-2 px-3 pr-8 text-gray-800"
+                className="h-full w-full min-w-[300px] rounded py-2 px-3 pr-8 text-gray-800"
                 maxLength={255}
               />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 absolute right-2 top-[50%] -translate-y-[50%]"
+                className="absolute right-2 top-[50%] h-4 w-4 -translate-y-[50%]"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="#9CA3AF"
@@ -125,17 +125,16 @@ const RestaurantsTable = () => {
             </div>
           </div>
           <div className="flex items-center">
-            <div className="mr-4 hidden md:block shrink-0">Group actions: </div>
+            <div className="mr-4 hidden shrink-0 md:block">Group actions: </div>
             <div
               onClick={handleDeleteSelected}
-              className="mr-6 hidden md:flex border items-center justify-center hover:bg-gray-200 cursor-pointer rounded p-1.5 border-slate-800"
+              className="mr-6 hidden cursor-pointer items-center justify-center rounded border border-red-500 p-1.5 transition hover:bg-gray-200 md:flex"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
+                className="h-5 w-5 stroke-red-500"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="#1E293B"
                 strokeWidth={2}
               >
                 <path
@@ -147,17 +146,17 @@ const RestaurantsTable = () => {
             </div>
             <Link
               to={"/restaurants/new"}
-              className="font-medium text-white px-6 py-2 bg-blue-600 hover:bg-blue-700 focus:outline-none rounded"
+              className="rounded bg-blue-600 px-6 py-2 font-medium text-white transition hover:bg-blue-700 focus:outline-none"
             >
               New Restaurant
             </Link>
           </div>
 
-          <div className="flex md:hidden items-center">
-            <div className="mr-3 md:mr-4 shrink-0">Group actions: </div>
+          <div className="flex items-center md:hidden">
+            <div className="mr-3 shrink-0 md:mr-4">Group actions: </div>
             <div
               onClick={handleDeleteSelected}
-              className="flex border items-center hover:bg-gray-200 justify-center cursor-pointer rounded p-1.5 border-slate-800"
+              className="flex cursor-pointer items-center justify-center rounded border border-slate-800 p-1.5 transition hover:bg-gray-200"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -177,7 +176,7 @@ const RestaurantsTable = () => {
           </div>
         </div>
       </div>
-      <div className="bg-white overflow-x-scroll overflow-y-hidden shadow px-4 md:px-8 pt-4 md:pt-7 pb-5">
+      <div className="overflow-y-hidden overflow-x-scroll bg-white px-4 pt-4 pb-5 shadow md:px-8 md:pt-7">
         <table className="w-full whitespace-nowrap">
           <thead>
             <tr className="h-16 w-full text-sm leading-none text-gray-800">

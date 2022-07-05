@@ -20,7 +20,7 @@ const Chevron = ({
           setChevronFlipped(!chevronFlipped);
           chevronEvent();
         }}
-        className="absolute top-[calc(50%+1px)] -translate-y-1/2 ml-0.5 cursor-pointer"
+        className="absolute top-1/2 ml-0.5 -translate-y-1/2 cursor-pointer"
       >
         <ChevronIcon className={chevronFlipped ? "rotate-180" : ""} />
       </span>
@@ -36,7 +36,7 @@ const TableHeader = ({
   children,
 }) => {
   return (
-    <th className={"font-normal text-left relative " + className}>
+    <th className={"relative text-left font-normal " + className}>
       {children}
       <Chevron
         chevron={chevron}

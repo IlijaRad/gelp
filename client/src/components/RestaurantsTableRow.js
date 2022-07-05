@@ -68,11 +68,11 @@ const RestaurantsTableRow = ({
   return (
     <tr
       key={id}
-      className="h-20 text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100"
+      className="h-20 border-b border-t border-gray-100 bg-white text-sm leading-none text-gray-800 transition hover:bg-gray-100"
       onClick={() => handleClick(id)}
     >
       <td
-        className="cursor-pointer pl-4 relative"
+        className="relative cursor-pointer pl-4"
         onClick={(e) => e.stopPropagation()}
       >
         <Checkbox checked={checked} setChecked={setChecked} />
@@ -92,12 +92,12 @@ const RestaurantsTableRow = ({
           {average_rating ? (
             <>
               {[...Array(Math.round(average_rating))].map((_, i) => (
-                <span className="text-yellow-500 text-2xl" key={i}>
+                <span className="text-2xl text-yellow-500" key={i}>
                   ★
                 </span>
               ))}
               {[...Array(5 - Math.round(average_rating))].map((_, i) => (
-                <span className="text-gray-500 text-2xl" key={i}>
+                <span className="text-2xl text-gray-500" key={i}>
                   ★
                 </span>
               ))}
@@ -106,7 +106,7 @@ const RestaurantsTableRow = ({
           ) : (
             <>
               {[...Array(5)].map((_, i) => (
-                <span className="text-gray-500 text-2xl" key={i}>
+                <span className="text-2xl text-gray-500" key={i}>
                   ★
                 </span>
               ))}
@@ -118,7 +118,7 @@ const RestaurantsTableRow = ({
       <td className="pl-6">
         <button
           onClick={handleEdit}
-          className="text-white font-medium px-6 py-3 bg-teal-600 hover:bg-teal-700 focus:outline-none rounded"
+          className="rounded bg-teal-600 px-6 py-3 font-medium text-white transition hover:bg-teal-700 focus:outline-none"
         >
           Edit
         </button>
@@ -129,7 +129,7 @@ const RestaurantsTableRow = ({
             e.stopPropagation();
             handleDelete(id);
           }}
-          className="text-white font-medium px-6 py-3 bg-red-600 hover:bg-red-700 focus:outline-none rounded"
+          className="rounded bg-red-600 px-6 py-3 font-medium text-white transition hover:bg-red-700 focus:outline-none"
         >
           Delete
         </button>
