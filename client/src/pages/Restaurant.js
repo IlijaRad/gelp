@@ -24,7 +24,7 @@ const Restaurant = () => {
   }, []);
 
   return (
-    <div className="my-8">
+    <div className="bg-[#e1e1e1/95] py-8">
       {selectedRestaurant && (
         <div className="flex flex-col items-center">
           <h1 className="text-center text-3xl font-medium text-gray-800 md:text-[42px]">
