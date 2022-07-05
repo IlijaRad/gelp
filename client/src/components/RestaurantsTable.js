@@ -12,6 +12,7 @@ const RestaurantsTable = () => {
   const [restaurantSearch, setRestaurantSearch] = useState("");
   const [checked, setChecked] = useState(false);
   const [selectedIds, setSelectedIds] = useState([]);
+  const [uncheckedBySingle, setUncheckedBySingle] = useState(false);
 
   useEffect(() => {
     async function getRestaurants() {
@@ -158,7 +159,11 @@ const RestaurantsTable = () => {
           <thead>
             <tr className="h-16 w-full text-sm leading-none text-gray-800">
               <th className="font-normal text-left pl-4">
-                <Checkbox checked={checked} setChecked={setChecked} />
+                <Checkbox
+                  setUncheckedBySingle={setUncheckedBySingle}
+                  checked={checked}
+                  setChecked={setChecked}
+                />
               </th>
               <th className="font-normal text-left pl-4">Restaurant</th>
               <th className="font-normal text-left pl-12">Location</th>
@@ -190,6 +195,8 @@ const RestaurantsTable = () => {
                     setAllChecked={setChecked}
                     selectedIds={selectedIds}
                     setSelectedIds={setSelectedIds}
+                    uncheckedBySingle={uncheckedBySingle}
+                    setUncheckedBySingle={setUncheckedBySingle}
                   />
                 )
               )}
