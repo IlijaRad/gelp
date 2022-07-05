@@ -146,7 +146,7 @@ const RestaurantsTable = () => {
                       </div>
                       <div
                         onClick={handleDeleteSelected}
-                        className="group mr-6 hidden cursor-pointer items-center justify-center rounded border border-red-500 p-1.5 transition hover:border-white hover:bg-red-500 md:flex"
+                        className="group mr-6 hidden cursor-pointer items-center justify-center rounded border border-red-500 p-[5px] transition hover:border-white hover:bg-red-500 md:flex"
                       >
                         <Trashcan className="h-5 w-5 stroke-red-500 transition group-hover:stroke-white" />
                       </div>
@@ -164,9 +164,9 @@ const RestaurantsTable = () => {
                       </div>
                       <div
                         onClick={handleDeleteSelected}
-                        className="flex cursor-pointer items-center justify-center rounded border border-red-500 p-1.5 transition hover:bg-gray-200"
+                        className="group flex cursor-pointer items-center justify-center rounded border border-red-500 p-[5px] transition hover:border-white hover:bg-red-500"
                       >
-                        <Trashcan />
+                        <Trashcan className="h-5 w-5 stroke-red-500 transition group-hover:stroke-white" />
                       </div>
                     </div>
                   </div>

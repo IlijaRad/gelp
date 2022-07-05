@@ -16,13 +16,13 @@ const Pagination = ({
   };
 
   return (
-    <div className="mt-4 flex items-center justify-end">
+    <div className="mt-4 mb-12 flex items-center justify-end px-6 md:px-4">
       <Chevron
         onClick={() => prevPage()}
         className={
           currentPage !== 0
-            ? "stroke-3 mr-4 h-5 w-5 rotate-90 cursor-pointer stroke-gray-900"
-            : "stroke-3 mr-4 h-5 w-5 rotate-90 stroke-gray-900/50"
+            ? "stroke-3 mr-3 h-5 w-5 rotate-90 cursor-pointer stroke-gray-900 md:mr-4"
+            : "stroke-3 mr-3 h-5 w-5 rotate-90 stroke-gray-900/50 md:mr-4"
         }
       />
       <span>Page</span>
@@ -53,8 +53,8 @@ const Pagination = ({
         onClick={() => nextPage()}
         className={
           currentPage !== totalPages - 1
-            ? "stroke-3 ml-4 h-5 w-5 -rotate-90 cursor-pointer stroke-gray-900"
-            : "stroke-3 ml-4 h-5 w-5 -rotate-90 stroke-gray-900/50"
+            ? "stroke-3 ml-3 h-5 w-5 -rotate-90 cursor-pointer stroke-gray-900 md:ml-4"
+            : "stroke-3 ml-3 h-5 w-5 -rotate-90 stroke-gray-900/50 md:ml-4"
         }
       />
       <input
@@ -62,7 +62,7 @@ const Pagination = ({
         onChange={(e) => setPerPage(Number(e.target.value))}
         type="text"
         maxLength={2}
-        className="mx-3 w-10 rounded border border-gray-300 px-2"
+        className="mx-2 w-10 rounded border border-gray-300 px-2 md:mx-3"
       />
       <span>per page</span>
     </div>
