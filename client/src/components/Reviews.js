@@ -2,27 +2,27 @@ import AddReview from "./AddReview";
 
 const Reviews = ({ reviews }) => {
   return (
-    <div className="max-w-[1600px] w-full mx-auto mt-12 px-6 flex flex-col ">
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-12 mb-12">
+    <div className="mx-auto mt-12 flex w-full max-w-[1600px] flex-col px-6">
+      <div className="mb-12 grid grid-cols-1 gap-12 md:grid-cols-3 lg:grid-cols-4">
         {reviews.map(({ id, name, rating, review }) => (
-          <div key={id} className="flex flex-col border min-w-[225px]">
-            <div className="flex items-center justify-between p-4 border-b">
-              <div className="text-2xl truncate">{name}</div>
+          <div key={id} className="flex min-w-[225px] flex-col border">
+            <div className="flex items-center justify-between border-b p-4">
+              <div className="truncate text-2xl">{name}</div>
               <div className="flex">
                 {[...Array(Math.round(rating))].map((_, i) => (
-                  <span className="text-yellow-500 text-2xl" key={i}>
+                  <span className="text-2xl text-yellow-500" key={i}>
                     ★
                   </span>
                 ))}
                 {[...Array(5 - Math.round(rating))].map((_, i) => (
-                  <span className="text-gray-500 text-2xl" key={i}>
+                  <span className="text-2xl text-gray-500" key={i}>
                     ★
                   </span>
                 ))}
               </div>
             </div>
             <div className="p-4">
-              <p className="line-clamp-8 break-words text-ellipsis">{review}</p>
+              <p className="text-ellipsis break-words line-clamp-8">{review}</p>
             </div>
           </div>
         ))}

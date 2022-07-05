@@ -27,16 +27,16 @@ const Restaurant = () => {
     <div className="my-8">
       {selectedRestaurant && (
         <div className="flex flex-col items-center">
-          <h1 className="text-center font-medium text-gray-800 text-3xl md:text-[42px]">
+          <h1 className="text-center text-3xl font-medium text-gray-800 md:text-[42px]">
             {selectedRestaurant.restaurant.name}
           </h1>
-          <div className="flex mb-8">
+          <div className="mb-8 flex">
             {[
               ...Array(
                 Math.round(selectedRestaurant.restaurant.average_rating)
               ),
             ].map((_, i) => (
-              <span className="text-yellow-500 text-2xl" key={i}>
+              <span className="text-2xl text-yellow-500" key={i}>
                 ★
               </span>
             ))}
@@ -45,7 +45,7 @@ const Restaurant = () => {
                 5 - Math.round(selectedRestaurant.restaurant.average_rating)
               ),
             ].map((_, i) => (
-              <span className="text-gray-500 text-2xl" key={i}>
+              <span className="text-2xl text-gray-500" key={i}>
                 ★
               </span>
             ))}

@@ -53,13 +53,13 @@ const UpdateRestaurant = () => {
   if (!restaurants) return null;
 
   return (
-    <div className="max-w-3xl w-full mx-auto mt-12 px-6">
+    <div className="mx-auto mt-12 w-full max-w-3xl px-6">
       <form className="w-full" onSubmit={handleSubmit}>
-        <label htmlFor="name" className="text-sm mb-1 block text-gray-900">
+        <label htmlFor="name" className="mb-1 block text-sm text-gray-900">
           Name
         </label>
         <input
-          className="mb-4 py-2 block w-full px-3 border border-gray-300 text-gray-900 rounded"
+          className="mb-4 block w-full rounded border border-gray-300 py-2 px-3 text-gray-900"
           type="text"
           placeholder="Name"
           id="name"
@@ -67,11 +67,11 @@ const UpdateRestaurant = () => {
           onChange={(e) => setName(e.target.value)}
           maxLength={50}
         />
-        <label htmlFor="location" className="text-sm mb-1 block text-gray-900">
+        <label htmlFor="location" className="mb-1 block text-sm text-gray-900">
           Location
         </label>
         <input
-          className="mb-4 py-2 w-full block px-3 border border-gray-300 text-gray-900 rounded"
+          className="mb-4 block w-full rounded border border-gray-300 py-2 px-3 text-gray-900"
           type="text"
           placeholder="Location"
           id="location"
@@ -79,9 +79,9 @@ const UpdateRestaurant = () => {
           onChange={(e) => setLocation(e.target.value)}
           maxLength={50}
         />
-        <label className="text-sm mb-1 block text-gray-900">Price Range</label>
+        <label className="mb-1 block text-sm text-gray-900">Price Range</label>
         <select
-          className="mb-6 w-full block py-2 px-3 border border-gray-300 rounded text-gray-900"
+          className="mb-6 block w-full rounded border border-gray-300 py-2 px-3 text-gray-900"
           value={selectedPriceRange}
           onChange={(e) => setSelectedPrinceRange(e.target.value)}
         >
@@ -93,7 +93,7 @@ const UpdateRestaurant = () => {
         </select>
         <button
           type="submit"
-          className="text-white font-medium px-9 py-[9px] bg-teal-600 hover:bg-teal-700 rounded"
+          className="rounded bg-teal-600 px-9 py-[9px] font-medium text-white transition hover:bg-teal-700"
         >
           Update
         </button>

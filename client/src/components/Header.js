@@ -1,6 +1,6 @@
 const Header = () => {
   return (
-    <h1 className="text-center font-medium text-gray-800 text-3xl md:text-[42px]">
+    <h1 className="text-center text-3xl font-medium text-gray-800 md:text-[42px]">
       Restaurants
     </h1>
   );
