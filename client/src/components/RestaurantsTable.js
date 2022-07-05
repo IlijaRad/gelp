@@ -5,6 +5,21 @@ import RestaurantsTableRow from "./RestaurantsTableRow";
 import Fuse from "fuse.js";
 import { API_PATH } from "../contants/api";
 import Checkbox from "./Checkbox";
+import TableHeader from "./TableHeader";
+import DataSort from "react-data-sort";
+
+const SORT_OPTIONS = {
+  NAME: "name",
+  LOCATION: "location",
+  PRICE_RANGE: "price_range",
+  AVERAGE_RATING: "average_rating",
+  COUNT: "count",
+};
+
+const SORT_DIRECTIONS = {
+  ASC: "asc",
+  DESC: "desc",
+};
 
 const RestaurantsTable = () => {
   const { restaurants, setRestaurants } = useContext(RestaurantsContext);
@@ -13,6 +28,8 @@ const RestaurantsTable = () => {
   const [checked, setChecked] = useState(false);
   const [selectedIds, setSelectedIds] = useState([]);
   const [uncheckedBySingle, setUncheckedBySingle] = useState(false);
+  const [currentSortOption, setCurrentSortOption] = useState(SORT_OPTIONS.NAME);
+  const [sortDirection, setSortDirection] = useState(SORT_DIRECTIONS.ASC);
 
   useEffect(() => {
     async function getRestaurants() {
@@ -164,48 +181,92 @@ const RestaurantsTable = () => {
         <table className="w-full whitespace-nowrap">
           <thead>
             <tr className="h-16 w-full text-sm leading-none text-gray-800">
-              <th className="font-normal text-left pl-4">
+              <TableHeader className="pl-4">
                 <Checkbox
                   setUncheckedBySingle={setUncheckedBySingle}
                   checked={checked}
                   setChecked={setChecked}
                 />
-              </th>
-              <th className="font-normal text-left pl-4">Restaurant</th>
-              <th className="font-normal text-left pl-12">Location</th>
-              <th className="font-normal text-left pl-12">Price Range</th>
-              <th className="font-normal text-left pl-12">Ratings</th>
+              </TableHeader>
+              <TableHeader
+                className="pl-4"
+                chevron={true}
+                chevronEvent={() => setCurrentSortOption(SORT_OPTIONS.NAME)}
+                setSortDirection={setSortDirection}
+              >
+                <span>Restaurant</span>
+              </TableHeader>
+              <TableHeader
+                className="pl-12"
+                chevron={true}
+                chevronEvent={() => setCurrentSortOption(SORT_OPTIONS.LOCATION)}
+                setSortDirection={setSortDirection}
+              >
+                <span>Location</span>
+              </TableHeader>
+              <TableHeader
+                className="pl-12"
+                chevron={true}
+                chevronEvent={() =>
+                  setCurrentSortOption(SORT_OPTIONS.PRICE_RANGE)
+                }
+                setSortDirection={setSortDirection}
+              >
+                <span>Price Range</span>
+              </TableHeader>
+              <TableHeader
+                className="pl-12"
+                chevron={true}
+                chevronEvent={() =>
+                  setCurrentSortOption(SORT_OPTIONS.AVERAGE_RATING)
+                }
+                setSortDirection={setSortDirection}
+              >
+                <span>Ratings</span>
+              </TableHeader>
             </tr>
           </thead>
           <tbody className="w-full">
-            {restaurants &&
-              restaurants.map(
-                ({
-                  id,
-                  name,
-                  location,
-                  price_range,
-                  average_rating,
-                  count,
-                }) => (
-                  <RestaurantsTableRow
-                    key={id}
-                    id={String(id)}
-                    name={name}
-                    location={location}
-                    price_range={price_range}
-                    average_rating={average_rating}
-                    count={count}
-                    handleDelete={handleDelete}
-                    allChecked={checked}
-                    setAllChecked={setChecked}
-                    selectedIds={selectedIds}
-                    setSelectedIds={setSelectedIds}
-                    uncheckedBySingle={uncheckedBySingle}
-                    setUncheckedBySingle={setUncheckedBySingle}
-                  />
-                )
-              )}
+            {restaurants.length > 0 && (
+              <DataSort
+                data={restaurants}
+                sortBy={currentSortOption}
+                direction={sortDirection}
+                render={({ data, pages }) => {
+                  return (
+                    <>
+                      {data.map(
+                        ({
+                          id,
+                          name,
+                          location,
+                          price_range,
+                          average_rating,
+                          count,
+                        }) => (
+                          <RestaurantsTableRow
+                            key={id}
+                            id={String(id)}
+                            name={name}
+                            location={location}
+                            price_range={price_range}
+                            average_rating={average_rating}
+                            count={count}
+                            handleDelete={handleDelete}
+                            allChecked={checked}
+                            setAllChecked={setChecked}
+                            selectedIds={selectedIds}
+                            setSelectedIds={setSelectedIds}
+                            uncheckedBySingle={uncheckedBySingle}
+                            setUncheckedBySingle={setUncheckedBySingle}
+                          />
+                        )
+                      )}
+                    </>
+                  );
+                }}
+              />
+            )}
           </tbody>
         </table>
       </div>
