@@ -59,7 +59,9 @@ const Pagination = ({
       />
       <input
         value={perPage}
-        onChange={(e) => setPerPage(Number(e.target.value))}
+        onChange={(e) => {
+          setPerPage(Number(e.target.value.replace(/[^0-9]/g, "")));
+        }}
         type="text"
         maxLength={2}
         className="mx-2 w-10 rounded border border-gray-300 px-2 md:mx-3"
