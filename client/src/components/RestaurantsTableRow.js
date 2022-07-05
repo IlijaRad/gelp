@@ -9,6 +9,8 @@ const RestaurantsTableRow = ({
   average_rating,
   restaurants,
   setRestaurants,
+  allRestaurants,
+  setAllRestaurants,
   count,
 }) => {
   const navigate = useNavigate();
@@ -26,17 +28,24 @@ const RestaurantsTableRow = ({
     e.stopPropagation();
 
     try {
-      await fetch(`${API_PATH}/${id}`, {
+      const response = await fetch(`${API_PATH}/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
       });
-      setRestaurants(
-        restaurants.filter((restaurant) => {
-          return restaurant.id !== id;
-        })
-      );
+      if (response.ok) {
+        setRestaurants(
+          restaurants.filter((restaurant) => {
+            return restaurant.id !== id;
+          })
+        );
+        setAllRestaurants(
+          allRestaurants.filter((restaurant) => {
+            return restaurant.id !== id;
+          })
+        );
+      }
     } catch (err) {
       console.log(err);
     }

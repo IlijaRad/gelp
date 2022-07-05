@@ -27,7 +27,7 @@ const Restaurant = () => {
     <div className="my-8">
       {selectedRestaurant && (
         <div className="flex flex-col items-center">
-          <h1 className="text-center font-medium text-gray-800 text-[42px]">
+          <h1 className="text-center font-medium text-gray-800 text-3xl md:text-[42px]">
             {selectedRestaurant.restaurant.name}
           </h1>
           <div className="flex mb-8">

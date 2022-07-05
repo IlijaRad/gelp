@@ -52,7 +52,7 @@ const AddRestaurant = () => {
 
   return (
     <div className="my-8">
-      <h1 className="text-center font-medium text-gray-800 text-[42px] mb-8">
+      <h1 className="text-center font-medium text-gray-800 text-3xl md:text-[42px] mb-8">
         Add Restaurant
       </h1>
       <div className="max-w-3xl w-full mx-auto mt-12 px-6">
