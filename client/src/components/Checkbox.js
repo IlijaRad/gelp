@@ -1,11 +1,14 @@
-const Checkbox = ({ checked, setChecked }) => {
+const Checkbox = ({ checked, setChecked, setUncheckedBySingle = false }) => {
   return (
     <div className="bg-gray-200 rounded-sm w-5 h-5 flex flex-shrink-0 justify-center items-center relative">
       <input
         type="checkbox"
         className="checkbox opacity-0 absolute cursor-pointer w-full h-full"
         value={checked}
-        onChange={() => setChecked((checked) => !checked)}
+        onChange={() => {
+          setChecked((checked) => !checked);
+          if (setUncheckedBySingle) setUncheckedBySingle(true);
+        }}
       />
       <div className="bg-blue-700 text-white rounded-sm">
         {checked && (

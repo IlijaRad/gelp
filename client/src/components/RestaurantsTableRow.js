@@ -14,25 +14,28 @@ const RestaurantsTableRow = ({
   handleDelete,
   selectedIds,
   setSelectedIds,
+  uncheckedBySingle,
+  setUncheckedBySingle,
 }) => {
   const navigate = useNavigate();
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {
-    setChecked(selectedIds.includes(id));
     if (allChecked) {
       const notIncludes = !selectedIds.includes(id);
       if (notIncludes) {
         setSelectedIds((prev) => [...prev, id]);
       }
+    } else {
+      if (uncheckedBySingle) setSelectedIds([]);
     }
     //eslint-disable-next-line
   }, [allChecked]);
 
   useEffect(() => {
     if (selectedIds.includes(id)) setChecked(true);
-    //eslint-disable-next-line
-  }, [selectedIds]);
+    else setChecked(false);
+  }, [selectedIds, id]);
 
   useEffect(() => {
     if (!allChecked) {
@@ -46,6 +49,7 @@ const RestaurantsTableRow = ({
       }
     }
     if (!checked && allChecked) {
+      setUncheckedBySingle(false);
       setSelectedIds((prev) => prev.filter((sId) => sId !== id));
       setAllChecked(false);
     }
