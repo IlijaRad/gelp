@@ -68,11 +68,11 @@ const RestaurantsTableRow = ({
   return (
     <tr
       key={id}
-      className="h-20 border-b border-t border-gray-100 bg-white text-sm leading-none text-gray-800 transition hover:bg-gray-100"
+      className="h-20 border-b border-t border-gray-200 bg-white text-sm leading-none text-gray-800 transition hover:bg-gray-100"
       onClick={() => handleClick(id)}
     >
       <td
-        className="relative cursor-pointer pl-4"
+        className="relative cursor-pointer pl-8"
         onClick={(e) => e.stopPropagation()}
       >
         <Checkbox checked={checked} setChecked={setChecked} />

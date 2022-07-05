@@ -41,7 +41,7 @@ const AddReview = () => {
 
   return (
     <form onSubmit={handleSubmit} className="mb-16">
-      <label htmlFor="name" className="mb-1 block text-sm text-gray-900">
+      <label htmlFor="name" className="mb-1 block text-sm text-gray-800">
         Name
       </label>
       <input
@@ -49,14 +49,14 @@ const AddReview = () => {
         type="text"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        className="mb-4 block w-full max-w-md rounded border border-gray-300 py-2 px-3 text-gray-900"
+        className="mb-4 block w-full max-w-md rounded border border-gray-300 py-2 px-3 text-gray-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-300"
         maxLength={50}
       />
-      <label htmlFor="rating" className="mb-1 block text-sm text-gray-900">
+      <label htmlFor="rating" className="mb-1 block text-sm text-gray-800">
         Rating
       </label>
       <select
-        className="mb-4 block w-full max-w-md rounded border border-gray-300 py-2 px-3 text-gray-900"
+        className="mb-4 block w-full max-w-md rounded border border-gray-300 bg-white py-2 px-3 text-gray-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-300"
         value={rating}
         onChange={(e) => setRating(e.target.value)}
       >
@@ -66,7 +66,7 @@ const AddReview = () => {
           </option>
         ))}
       </select>
-      <label htmlFor="review" className="mb-1 block text-sm text-gray-900">
+      <label htmlFor="review" className="mb-1 block text-sm text-gray-800">
         Name
       </label>
       <textarea
@@ -75,7 +75,7 @@ const AddReview = () => {
         placeholder="Write your review"
         value={reviewText}
         onChange={(e) => setReviewText(e.target.value)}
-        className="mb-4 block max-h-[300px] min-h-[60px] w-full rounded border border-gray-300 py-2 px-3 text-gray-900"
+        className="mb-4 block max-h-[300px] min-h-[60px] w-full rounded border border-gray-300 py-2 px-3 text-gray-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-300"
         maxLength={1000}
       />
       <button

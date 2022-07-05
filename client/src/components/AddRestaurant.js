@@ -51,8 +51,8 @@ const AddRestaurant = () => {
   };
 
   return (
-    <div className="my-8">
-      <h1 className="mb-8 text-center text-3xl font-medium text-gray-800 md:text-[42px]">
+    <div className="bg-[#e1e1e1/95] h-full py-8">
+      <h1 className="m mb-8 text-center text-3xl font-medium text-gray-800 md:text-[42px]">
         Add Restaurant
       </h1>
       <div className="mx-auto mt-12 w-full max-w-3xl px-6">
@@ -65,13 +65,13 @@ const AddRestaurant = () => {
               <div>{errors.location}</div>
             )}
           </div>
-          <label htmlFor="name" className="mb-1 block text-sm text-gray-900">
+          <label htmlFor="name" className="mb-1 block text-sm text-gray-800">
             Name
           </label>
           <input
             type="text"
             id="name"
-            className="mb-4 block w-full rounded border border-gray-300 py-2 px-3 text-gray-900"
+            className="mb-4 block w-full rounded border border-gray-300 py-2 px-3 text-gray-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-300"
             placeholder="Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -79,25 +79,25 @@ const AddRestaurant = () => {
           />
           <label
             htmlFor="location"
-            className="mb-1 block text-sm text-gray-900"
+            className="mb-1 block text-sm text-gray-800"
           >
             Location
           </label>
           <input
             type="text"
             id="location"
-            className="mb-4 block w-full rounded border border-gray-300 py-2 px-3 text-gray-900"
+            className="mb-4 block w-full rounded border border-gray-300 py-2 px-3 text-gray-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-300"
             placeholder="Location"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
             maxLength={50}
           />
-          <label className="mb-1 block text-sm text-gray-900">
+          <label className="mb-1 block text-sm text-gray-800">
             Price Range
           </label>
 
           <select
-            className="mb-4 block w-full rounded border border-gray-300 py-2 px-3 text-gray-900"
+            className="mb-4 block w-full rounded border border-gray-300 bg-white py-2 px-3 text-gray-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-300"
             value={selectedPriceRange}
             onChange={(e) => setSelectedPrinceRange(e.target.value)}
           >

@@ -22,7 +22,11 @@ const Chevron = ({
         }}
         className="absolute top-1/2 ml-0.5 -translate-y-1/2 cursor-pointer"
       >
-        <ChevronIcon className={chevronFlipped ? "rotate-180" : ""} />
+        <ChevronIcon
+          className={
+            chevronFlipped ? "h-3 w-3 rotate-180 stroke-2" : "h-3 w-3 stroke-2"
+          }
+        />
       </span>
     );
   return null;
