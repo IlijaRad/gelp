@@ -82,13 +82,14 @@ const RestaurantsTable = () => {
     <div className="w-full sm:px-6">
       <div className="px-4 md:px-8 py-4 md:py-7 bg-gray-100 rounded-tl-lg rounded-tr-lg">
         <div className="flex flex-wrap items-center justify-between gap-4 md:my-0 my-2">
-          <div className="flex items-center basis-full md:basis-[45%]">
-            <div className="relative w-full md:w-auto grow md:mr-4">
+          <div className="basis-full md:basis-[45%]">
+            <div className="relative w-full md:w-auto grow shrink">
               <input
                 type="text"
                 value={restaurantSearch}
                 onChange={(e) => setRestaurantSearch(e.target.value)}
-                className="rounded min-w-[320px] h-full w-full py-2 px-3 pr-8 text-gray-800"
+                className="rounded min-w-[300px] h-full w-full py-2 px-3 pr-8 text-gray-800"
+                maxLength={255}
               />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -105,10 +106,12 @@ const RestaurantsTable = () => {
                 />
               </svg>
             </div>
+          </div>
+          <div className="flex items-center">
             <div className="mr-4 hidden md:block shrink-0">Group actions: </div>
             <div
               onClick={handleDeleteSelected}
-              className="hidden md:flex border items-center justify-center hover:bg-gray-200 cursor-pointer rounded p-1.5 border-slate-800"
+              className="mr-6 hidden md:flex border items-center justify-center hover:bg-gray-200 cursor-pointer rounded p-1.5 border-slate-800"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -125,32 +128,35 @@ const RestaurantsTable = () => {
                 />
               </svg>
             </div>
+            <Link
+              to={"/restaurants/new"}
+              className="font-medium text-white px-6 py-2 bg-blue-600 hover:bg-blue-700 focus:outline-none rounded"
+            >
+              New Restaurant
+            </Link>
           </div>
 
-          <Link
-            to={"/restaurants/new"}
-            className="font-medium text-white px-6 py-2 bg-blue-600 hover:bg-blue-700 focus:outline-none rounded"
-          >
-            New Restaurant
-          </Link>
-          <div
-            onClick={handleDeleteSelected}
-            className="flex md:hidden border items-center hover:bg-gray-200 justify-center cursor-pointer rounded p-1.5 border-slate-800"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="#1E293B"
-              strokeWidth={2}
+          <div className="flex md:hidden items-center">
+            <div className="mr-3 md:mr-4 shrink-0">Group actions: </div>
+            <div
+              onClick={handleDeleteSelected}
+              className="flex border items-center hover:bg-gray-200 justify-center cursor-pointer rounded p-1.5 border-slate-800"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-              />
-            </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="#1E293B"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                />
+              </svg>
+            </div>
           </div>
         </div>
       </div>
