@@ -42,7 +42,7 @@ const Pagination = ({
           }}
           type="text"
           maxLength={2}
-          className="mx-3 w-10 select-none rounded border border-gray-300 px-2 text-transparent"
+          className="mx-3 w-10 select-none rounded border border-gray-300 px-2 text-transparent focus:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-300"
         />
         <label className="absolute top-0 left-5 select-none">
           {currentPage !== "" ? currentPage + 1 : ""}
@@ -64,7 +64,7 @@ const Pagination = ({
         }}
         type="text"
         maxLength={2}
-        className="mx-2 w-10 rounded border border-gray-300 px-2 md:mx-3"
+        className="mx-2 w-10 rounded border border-gray-300 px-2 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-300"
       />
       <span>per page</span>
     </div>

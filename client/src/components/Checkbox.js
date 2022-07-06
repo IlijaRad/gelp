@@ -1,6 +1,6 @@
 const Checkbox = ({ checked, setChecked, setUncheckedBySingle = false }) => {
   return (
-    <div className="relative flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-sm bg-gray-200">
+    <div className="bg-gray-200 relative flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-sm">
       <input
         type="checkbox"
         className="checkbox absolute h-full w-full cursor-pointer opacity-0"
@@ -10,7 +10,7 @@ const Checkbox = ({ checked, setChecked, setUncheckedBySingle = false }) => {
           if (setUncheckedBySingle) setUncheckedBySingle(true);
         }}
       />
-      <div className="rounded-sm bg-blue-700 text-white">
+      <div className="text-white rounded-sm bg-blue">
         {checked && (
           <svg
             xmlns="http://www.w3.org/2000/svg"

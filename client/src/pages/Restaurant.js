@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { RestaurantsContext } from "../context/RestaurantsContext";
 import { API_PATH } from "../contants/api";
 import Reviews from "../components/Reviews";
+import Star from "../assets/icons/Star";
 
 const Restaurant = () => {
   const { id } = useParams();
@@ -36,18 +37,20 @@ const Restaurant = () => {
                 Math.round(selectedRestaurant.restaurant.average_rating)
               ),
             ].map((_, i) => (
-              <span className="text-2xl text-yellow-500" key={i}>
-                ★
-              </span>
+              <Star
+                className="mt-3 h-6 w-6 fill-[#fdd835] stroke-[#fdd835]"
+                key={i}
+              />
             ))}
             {[
               ...Array(
                 5 - Math.round(selectedRestaurant.restaurant.average_rating)
               ),
             ].map((_, i) => (
-              <span className="text-2xl text-gray-500" key={i}>
-                ★
-              </span>
+              <Star
+                className="mt-3 h-6 w-6  fill-gray-500 stroke-gray-500"
+                key={i}
+              />
             ))}
           </div>
           <Reviews reviews={selectedRestaurant.reviews} />
