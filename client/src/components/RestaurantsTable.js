@@ -146,13 +146,13 @@ const RestaurantsTable = () => {
                       </div>
                       <div
                         onClick={handleDeleteSelected}
-                        className="group mr-6 hidden cursor-pointer items-center justify-center rounded border border-red-500 p-[5px] transition hover:border-white hover:bg-red-500 md:flex"
+                        className="group mr-6 hidden cursor-pointer items-center justify-center rounded border border-red p-1.5 transition hover:bg-red md:flex"
                       >
-                        <Trashcan className="h-5 w-5 stroke-red-500 transition group-hover:stroke-white" />
+                        <Trashcan className="h-5 w-5 stroke-red transition group-hover:stroke-white" />
                       </div>
                       <Link
                         to={"/restaurants/new"}
-                        className="rounded bg-blue-600 px-6 py-2 font-medium text-white transition hover:bg-blue-700 focus:outline-none"
+                        className="rounded bg-blue px-6 py-2 font-medium text-white transition hover:bg-blueDark first-letter:focus:outline-none"
                       >
                         New Restaurant
                       </Link>
@@ -164,9 +164,9 @@ const RestaurantsTable = () => {
                       </div>
                       <div
                         onClick={handleDeleteSelected}
-                        className="group flex cursor-pointer items-center justify-center rounded border border-red-500 p-[5px] transition hover:border-white hover:bg-red-500"
+                        className="group flex cursor-pointer items-center justify-center rounded border border-red p-1.5 transition hover:bg-red"
                       >
-                        <Trashcan className="h-5 w-5 stroke-red-500 transition group-hover:stroke-white" />
+                        <Trashcan className="h-5 w-5 stroke-red transition group-hover:stroke-white" />
                       </div>
                     </div>
                   </div>

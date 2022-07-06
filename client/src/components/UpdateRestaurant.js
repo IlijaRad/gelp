@@ -55,11 +55,11 @@ const UpdateRestaurant = () => {
   return (
     <div className="mx-auto mt-12 w-full max-w-3xl px-6">
       <form className="w-full" onSubmit={handleSubmit}>
-        <label htmlFor="name" className="mb-1 block text-sm text-gray-800">
+        <label htmlFor="name" className="text-gray-800 mb-1 block text-sm">
           Name
         </label>
         <input
-          className="mb-4 block w-full rounded border border-gray-300 py-2 px-3 text-gray-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-300"
+          className="border-gray-300 text-gray-800 focus:border-transparent focus:ring-gray-300 mb-4 block w-full rounded border py-2 px-3 focus:outline-none focus:ring-2"
           type="text"
           placeholder="Name"
           id="name"
@@ -67,11 +67,11 @@ const UpdateRestaurant = () => {
           onChange={(e) => setName(e.target.value)}
           maxLength={50}
         />
-        <label htmlFor="location" className="mb-1 block text-sm text-gray-800">
+        <label htmlFor="location" className="text-gray-800 mb-1 block text-sm">
           Location
         </label>
         <input
-          className="mb-4 block w-full rounded border border-gray-300 py-2 px-3 text-gray-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-300"
+          className="border-gray-300 text-gray-800 focus:border-transparent focus:ring-gray-300 mb-4 block w-full rounded border py-2 px-3 focus:outline-none focus:ring-2"
           type="text"
           placeholder="Location"
           id="location"
@@ -79,9 +79,9 @@ const UpdateRestaurant = () => {
           onChange={(e) => setLocation(e.target.value)}
           maxLength={50}
         />
-        <label className="mb-1 block text-sm text-gray-800">Price Range</label>
+        <label className="text-gray-800 mb-1 block text-sm">Price Range</label>
         <select
-          className="mb-6 block w-full rounded border border-gray-300 bg-white py-2 px-3 text-gray-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-300"
+          className="border-gray-300 bg-white text-gray-800 focus:border-transparent focus:ring-gray-300 mb-6 block w-full rounded border py-2 px-3 focus:outline-none focus:ring-2"
           value={selectedPriceRange}
           onChange={(e) => setSelectedPrinceRange(e.target.value)}
         >
@@ -93,7 +93,7 @@ const UpdateRestaurant = () => {
         </select>
         <button
           type="submit"
-          className="rounded bg-teal-600 px-9 py-[9px] font-medium text-white transition hover:bg-teal-700"
+          className="text-white rounded bg-green px-9 py-[9px] font-medium transition hover:bg-greenDark"
         >
           Update
         </button>

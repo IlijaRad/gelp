@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Checkbox from "./Checkbox";
+import Star from "../assets/icons/Star";
 
 const RestaurantsTableRow = ({
   id,
@@ -92,23 +93,26 @@ const RestaurantsTableRow = ({
           {average_rating ? (
             <>
               {[...Array(Math.round(average_rating))].map((_, i) => (
-                <span className="text-2xl text-yellow-500" key={i}>
-                  ★
-                </span>
+                <Star
+                  className="h-5 w-5 fill-[#fdd835] stroke-[#fdd835]"
+                  key={i}
+                />
               ))}
               {[...Array(5 - Math.round(average_rating))].map((_, i) => (
-                <span className="text-2xl text-gray-500" key={i}>
-                  ★
-                </span>
+                <Star
+                  className="h-5 w-5 fill-gray-500 stroke-gray-500"
+                  key={i}
+                />
               ))}
               <p className="ml-1.5 font-medium">{`(${count})`}</p>
             </>
           ) : (
             <>
               {[...Array(5)].map((_, i) => (
-                <span className="text-2xl text-gray-500" key={i}>
-                  ★
-                </span>
+                <Star
+                  key={i}
+                  className="h-5 w-5 fill-gray-500 stroke-gray-500"
+                />
               ))}
               <p className="ml-1.5 font-medium">{`(0)`}</p>
             </>
@@ -118,7 +122,7 @@ const RestaurantsTableRow = ({
       <td className="pl-6">
         <button
           onClick={handleEdit}
-          className="rounded bg-teal-600 px-6 py-3 font-medium text-white transition hover:bg-teal-700 focus:outline-none"
+          className="rounded bg-green px-6 py-3 font-medium text-white transition hover:bg-greenDark focus:outline-none"
         >
           Edit
         </button>
@@ -129,7 +133,7 @@ const RestaurantsTableRow = ({
             e.stopPropagation();
             handleDelete(id);
           }}
-          className="rounded bg-red-600 px-6 py-3 font-medium text-white transition hover:bg-red-700 focus:outline-none"
+          className="rounded bg-red px-6 py-3 font-medium text-white transition hover:bg-redDark focus:outline-none"
         >
           Delete
         </button>

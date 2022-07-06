@@ -1,3 +1,4 @@
+import Star from "../assets/icons/Star";
 import AddReview from "./AddReview";
 
 const Reviews = ({ reviews }) => {
@@ -10,14 +11,16 @@ const Reviews = ({ reviews }) => {
               <div className="truncate text-2xl">{name}</div>
               <div className="flex">
                 {[...Array(Math.round(rating))].map((_, i) => (
-                  <span className="text-2xl text-yellow-500" key={i}>
-                    ★
-                  </span>
+                  <Star
+                    className="h-4 w-4 fill-[#fdd835] stroke-[#fdd835]"
+                    key={i}
+                  />
                 ))}
                 {[...Array(5 - Math.round(rating))].map((_, i) => (
-                  <span className="text-2xl text-gray-500" key={i}>
-                    ★
-                  </span>
+                  <Star
+                    className="h-4 w-4 fill-gray-500 stroke-gray-500"
+                    key={i}
+                  />
                 ))}
               </div>
             </div>
