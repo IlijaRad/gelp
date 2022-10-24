@@ -66,6 +66,8 @@ const RestaurantsTableRow = ({
     navigate(`/restaurants/${id}/update`);
   };
 
+  if (!name) return null;
+
   return (
     <tr
       key={id}

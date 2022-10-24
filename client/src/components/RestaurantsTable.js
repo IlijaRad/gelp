@@ -60,7 +60,7 @@ const RestaurantsTable = () => {
       if (restaurantSearch.length > 1 && results.length > 0) {
         setRestaurants(results);
       } else if (restaurantSearch.length > 0 && results.length === 0) {
-        setRestaurants([]);
+        setRestaurants([{ id: 1 }]);
       } else {
         setRestaurants(allRestaurants);
       }
@@ -225,37 +225,35 @@ const RestaurantsTable = () => {
                       </tr>
                     </thead>
                     <tbody className="w-full">
-                      {restaurants.length > 0 && (
-                        <>
-                          {data.map(
-                            ({
-                              id,
-                              name,
-                              location,
-                              price_range,
-                              average_rating,
-                              count,
-                            }) => (
-                              <RestaurantsTableRow
-                                key={id}
-                                id={String(id)}
-                                name={name}
-                                location={location}
-                                price_range={price_range}
-                                average_rating={average_rating}
-                                count={count}
-                                handleDelete={handleDelete}
-                                allChecked={checked}
-                                setAllChecked={setChecked}
-                                selectedIds={selectedIds}
-                                setSelectedIds={setSelectedIds}
-                                uncheckedBySingle={uncheckedBySingle}
-                                setUncheckedBySingle={setUncheckedBySingle}
-                              />
-                            )
-                          )}
-                        </>
-                      )}
+                      <>
+                        {data.map(
+                          ({
+                            id,
+                            name,
+                            location,
+                            price_range,
+                            average_rating,
+                            count,
+                          }) => (
+                            <RestaurantsTableRow
+                              key={id}
+                              id={String(id)}
+                              name={name}
+                              location={location}
+                              price_range={price_range}
+                              average_rating={average_rating}
+                              count={count}
+                              handleDelete={handleDelete}
+                              allChecked={checked}
+                              setAllChecked={setChecked}
+                              selectedIds={selectedIds}
+                              setSelectedIds={setSelectedIds}
+                              uncheckedBySingle={uncheckedBySingle}
+                              setUncheckedBySingle={setUncheckedBySingle}
+                            />
+                          )
+                        )}
+                      </>
                     </tbody>
                   </table>
                 </div>
